@@ -1,0 +1,16 @@
+"Directory_Functions_struct.obj",
+"File_System_v2.obj",
+"I2C.obj",
+"I2C_test.obj",
+"Long_Serial_In.obj",
+"Play_Song.obj",
+"print_bytes.obj",
+"Read_Sector.obj",
+"SDCard.obj",
+"SPI.obj",
+"STA013_config.obj",
+"UART.obj",
+"config.obj",
+"rtos.obj" 
+TO "younger_I2c" 
+RAMSIZE(256) 
