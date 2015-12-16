@@ -15,9 +15,9 @@
 
 void print_hex(uint8_t in);
 
-void print_16bytes(uint8_t * array_in);
+//void print_16bytes(uint8_t * array_in);
 
-void print_memory(uint16_t number_of_bytes, uint8_t * array_in);
+//void print_memory(uint16_t number_of_bytes, uint8_t * array_in);
 
 
 #endif

@@ -34,9 +34,13 @@
 // ------ Public function prototypes -------------------------------
 uint8_t SEND_COMMAND(uint8_t cmnd, uint32_t argum);
 
+uint8_t SEND_COMMAND_ISR(uint8_t cmnd, uint32_t argum);
+
 uint8_t response(uint8_t num, uint8_t * valout);
 
 uint8_t read_block(uint16_t num, uint8_t * array_out);
+
+uint8_t read_block_ISR(uint16_t num, uint8_t * array_out);
 
 uint8_t SD_card_init(void);
 

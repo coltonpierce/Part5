@@ -49,6 +49,18 @@ uint16_t read16(uint16_t offset, uint8_t * array_name)
    return return_val;
 }
 
+uint16_t read16_ISR(uint16_t offset, uint8_t * array_name)
+{
+   uint16_t idata return_val,temp;
+   offset&=0x1FF;  // limit offset to 0 to 511
+   return_val=0;
+   return_val=*(array_name+offset+1);
+   return_val=return_val<<8;
+   temp=*(array_name+offset);
+   return_val|=temp;
+   return return_val;
+}
+
 /***********************************************************************
 DESC: Reads a specified word (stored little endian) from a block of memory 
 INPUT: Offset to the LSB of the word, Starting address of the block of memory
@@ -60,6 +72,21 @@ uint32_t read32(uint16_t offset, uint8_t * array_name)
 {
    uint32_t return_val;
    uint8_t temp, i;
+   return_val=0;
+   offset&=0x1FF;  // limit offset to 0 to 511
+   for(i=0;i<4;i++)
+   {   
+       temp=*(array_name+offset+(3-i));
+       return_val=return_val<<8;
+       return_val|=temp;
+   }
+   return return_val;
+}
+
+uint32_t read32_ISR(uint16_t offset, uint8_t * array_name)
+{
+   uint32_t idata return_val;
+   uint8_t idata temp, i;
    return_val=0;
    offset&=0x1FF;  // limit offset to 0 to 511
    for(i=0;i<4;i++)
@@ -177,7 +204,22 @@ uint32_t First_Sector (uint32_t Cluster_num)
    return Sector_num;
 }
 
+uint32_t First_Sector_ISR (uint32_t Cluster_num)
+{
+   uint32_t idata Sector_num;
+   FS_values_t * Drive_p;
 
+   Drive_p=Export_Drive_values_ISR();
+   if(Cluster_num==0) 
+   {
+       Sector_num=Drive_p->FirstRootDirSec;
+   }
+   else
+   {
+       Sector_num=((Cluster_num-2)*Drive_p->SecPerClus)+Drive_p->FirstDataSec;
+   }
+   return Sector_num;
+}
 
 /***********************************************************************
 DESC: Prints all short file name entries for a given directory 
@@ -405,29 +447,51 @@ CAUTION:
 ************************************************************************/
 
 
-uint32_t Find_Next_Clus(uint32_t Cluster_num, uint8_t xdata * array_name)
+//uint32_t Find_Next_Clus(uint32_t Cluster_num, uint8_t xdata * array_name)
+//{
+//   uint32_t Sector, return_clus;
+//   uint16_t FAToffset;
+//   uint8_t * values;
+//   FS_values_t * Drive_p;
+
+//   Drive_p=Export_Drive_values();
+//   values=array_name;
+//   Sector=(Cluster_num>>(Drive_p->BytesPerSecShift-Drive_p->FATshift))+Drive_p->StartofFAT;
+//   Read_Sector(Sector, Drive_p->BytesPerSec,values);
+//   FAToffset=(uint16_t)((Cluster_num<<Drive_p->FATshift)&(Drive_p->BytesPerSec-1));
+//   if(Drive_p->FATtype==FAT32)    // FAT32
+//   {
+//       return_clus=(read32(FAToffset,values)&0x0FFFFFFF);
+//   }
+//   else if(Drive_p->FATtype==FAT16)    // FAT16
+//   {
+//       return_clus=(uint32_t)(read16(FAToffset,values));
+//   }
+//   return return_clus;
+//}
+   
+uint32_t Find_Next_Clus_ISR(uint32_t Cluster_num, uint8_t xdata * array_name)
 {
-   uint32_t Sector, return_clus;
-   uint16_t FAToffset;
+   uint32_t idata Sector, return_clus;
+   uint16_t idata FAToffset;
    uint8_t * values;
    FS_values_t * Drive_p;
 
-   Drive_p=Export_Drive_values();
+   Drive_p=Export_Drive_values_ISR();
    values=array_name;
    Sector=(Cluster_num>>(Drive_p->BytesPerSecShift-Drive_p->FATshift))+Drive_p->StartofFAT;
-   Read_Sector(Sector, Drive_p->BytesPerSec,values);
+   Read_Sector_ISR(Sector, Drive_p->BytesPerSec,values);
    FAToffset=(uint16_t)((Cluster_num<<Drive_p->FATshift)&(Drive_p->BytesPerSec-1));
    if(Drive_p->FATtype==FAT32)    // FAT32
    {
-       return_clus=(read32(FAToffset,values)&0x0FFFFFFF);
+       return_clus=(read32_ISR(FAToffset,values)&0x0FFFFFFF);
    }
    else if(Drive_p->FATtype==FAT16)    // FAT16
    {
-       return_clus=(uint32_t)(read16(FAToffset,values));
+       return_clus=(uint32_t)(read16_ISR(FAToffset,values));
    }
    return return_clus;
 }
-   
 
 
 
@@ -441,46 +505,46 @@ CAUTION:
 ************************************************************************/
 
 
-uint8_t Open_File(uint32_t Cluster_num, uint8_t xdata * array_in)
-{
-   uint32_t Sector, SecOffset;
-   uint16_t entries;
-   uint8_t temp8;
-   uint8_t * values;
-   FS_values_t * Drive_p;
+//uint8_t Open_File(uint32_t Cluster_num, uint8_t xdata * array_in)
+//{
+//   uint32_t Sector, SecOffset;
+//   uint16_t entries;
+//   uint8_t temp8;
+//   uint8_t * values;
+//   FS_values_t * Drive_p;
 
-   Drive_p=Export_Drive_values();
-   values=array_in;
-   entries=0;
-   SecOffset=0;
-   
-   
-   do
-   {
-      if(SecOffset==0) Sector=((Cluster_num-2)*Drive_p->SecPerClus)+Drive_p->FirstDataSec;
-      printf("Cluster#: %9lu,  Sector#: %9lu,  SecOffset: %lu\n",Cluster_num,(Sector+SecOffset),SecOffset);
-      Read_Sector((Sector+SecOffset), Drive_p->BytesPerSec, values);      
-      print_memory(512,values);
-      SecOffset++;
-      if(SecOffset==Drive_p->SecPerClus)
-      {
-         Cluster_num=Find_Next_Clus(Cluster_num,values);
-         SecOffset=0;
-      }
-      printf("Press Space to Continue or X to exit\n");
-      do
-      {
-        temp8=getchar();
-      }while((temp8!=0x20)&&(temp8!=0x58)&&(temp8!='P'));
-      if(temp8=='P')
-      {
-         Play_Song(Cluster_num);
-      }
-   }while(temp8==0x20);
-   putchar(0x0d);
-   putchar(0x0a);
-return 0;
-}
+//   Drive_p=Export_Drive_values();
+//   values=array_in;
+//   entries=0;
+//   SecOffset=0;
+//   
+//   
+//   do
+//   {
+//      if(SecOffset==0) Sector=((Cluster_num-2)*Drive_p->SecPerClus)+Drive_p->FirstDataSec;
+//      printf("Cluster#: %9lu,  Sector#: %9lu,  SecOffset: %lu\n",Cluster_num,(Sector+SecOffset),SecOffset);
+//      Read_Sector((Sector+SecOffset), Drive_p->BytesPerSec, values);      
+//      print_memory(512,values);
+//      SecOffset++;
+//      if(SecOffset==Drive_p->SecPerClus)
+//      {
+//         Cluster_num=Find_Next_Clus(Cluster_num,values);
+//         SecOffset=0;
+//      }
+//      printf("Press Space to Continue or X to exit\n");
+//      do
+//      {
+//        //temp8=getchar();
+//      }while((temp8!=0x20)&&(temp8!=0x58)&&(temp8!='P')&&SW1!=0&&SW2!=0);
+//      if(temp8=='P' || SW1 == 0)
+//      {
+//         Play_Song(Cluster_num);
+//      }
+//   }while(temp8==0x20);
+//   putchar(0x0d);
+//   putchar(0x0a);
+//return 0;
+//}
 
 
 

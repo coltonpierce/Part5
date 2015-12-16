@@ -26,6 +26,11 @@ FS_values_t * Export_Drive_values(void)
    return &Drive_values;
 }
 
+FS_values_t * Export_Drive_values_ISR(void)
+{
+   return &Drive_values;
+}
+
 
 /***********************************************************************
 DESC: Prints all short file name entries for a given directory 
@@ -39,9 +44,9 @@ CAUTION: Supports FAT16, SD_shift must be set before using this function
 
 uint16_t  Print_Directory(uint32_t Sector_num, uint8_t xdata * array_in)
 { 
-   uint32_t Sector, max_sectors;
-   uint16_t i, entries;
-   uint8_t temp8, j, attr, out_val, error_flag;
+   uint32_t idata Sector, max_sectors;
+   uint16_t idata i, entries;
+   uint8_t idata temp8, j, attr, out_val, error_flag;
    uint8_t * values;
 
 

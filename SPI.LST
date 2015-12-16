@@ -1,4 +1,4 @@
-C51 COMPILER V9.53.0.0   SPI                                                               12/15/2015 10:00:53 PAGE 1   
+C51 COMPILER V9.53.0.0   SPI                                                               12/15/2015 15:45:27 PAGE 1   
 
 
 C51 COMPILER V9.53.0.0, COMPILATION OF MODULE SPI
@@ -62,7 +62,7 @@ line level    source
   53   1      }
   54          
   55          /***********************************************************************
-C51 COMPILER V9.53.0.0   SPI                                                               12/15/2015 10:00:53 PAGE 2   
+C51 COMPILER V9.53.0.0   SPI                                                               12/15/2015 15:45:27 PAGE 2   
 
   56          DESC:    Sends one byte using the SPI port and returns the received byte
   57                    
@@ -103,11 +103,42 @@ line level    source
   92   1         return timeout;
   93   1      }
   94           
-  95          
+  95          uint8_t SPI_Transfer_ISR(uint8_t data_input, uint8_t * data_output)
+  96          {
+  97   1         uint8_t test, timeout;
+  98   1         timeout=0;
+  99   1         SPDAT=data_input;
+ 100   1         do
+ 101   1         {
+ 102   2            test=SPSTA;
+ 103   2          timeout++;
+ 104   2         }while(((test&0xF0)==0)&&(timeout!=0));
+ 105   1         if(timeout!=0)
+ 106   1         {
+ 107   2           if((test&0x70)==0)  // no errors
+ 108   2           {
+ 109   3               *data_output=SPDAT;
+ 110   3               timeout=no_errors;
+ 111   3           }
+ 112   2           else
+ 113   2           {
+ 114   3               *data_output=0xff;
+ 115   3               timeout=SPI_ERROR;
+ 116   3           }
+ 117   2         }
+C51 COMPILER V9.53.0.0   SPI                                                               12/15/2015 15:45:27 PAGE 3   
+
+ 118   1         else
+ 119   1         {
+ 120   2           *data_output=0xff;
+ 121   2           timeout=TIMEOUT_ERROR;
+ 122   2         }
+ 123   1         return timeout;
+ 124   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    186    ----
+   CODE SIZE        =    232    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

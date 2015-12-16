@@ -15,5 +15,6 @@
 // ------ Public function prototypes -------------------------------
 uint8_t SPI_Master_Init(uint32_t clock_rate);
 uint8_t SPI_Transfer(uint8_t data_input, uint8_t * data_output);
+uint8_t SPI_Transfer_ISR(uint8_t data_input, uint8_t * data_output);
 
 #endif

@@ -1,4 +1,4 @@
-C51 COMPILER V9.53.0.0   READ_SECTOR                                                       12/15/2015 10:00:52 PAGE 1   
+C51 COMPILER V9.53.0.0   READ_SECTOR                                                       12/15/2015 15:45:27 PAGE 1   
 
 
 C51 COMPILER V9.53.0.0, COMPILATION OF MODULE READ_SECTOR
@@ -32,15 +32,32 @@ line level    source
   23   2          }
   24   1          return error_flag;
   25   1      }
+  26          
+  27          uint8_t Read_Sector_ISR(uint32_t sector_number, uint16_t sector_size, uint8_t * array_for_data)
+  28          {
+  29   1        uint8_t idata SDtype,error_flag=No_Disk_Error;   
+  30   1      
+  31   1        SDtype=Return_SD_Card_Type();
+  32   1        nCS0=0;
+  33   1          error_flag=SEND_COMMAND_ISR(17,(sector_number<<SDtype));
+  34   1          if(error_flag==no_errors) error_flag=read_block_ISR(sector_size,array_for_data);
+  35   1          nCS0=1;
+  36   1      
+  37   1        if(error_flag!=no_errors)
+  38   1        {
+  39   2             error_flag=Disk_Error;
+  40   2          }
+  41   1          return error_flag;
+  42   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     67    ----
+   CODE SIZE        =    152    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =   ----       9
-   IDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      18
+   IDATA SIZE       =   ----       2
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
 

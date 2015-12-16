@@ -51,4 +51,6 @@ uint32_t Read_Dir_Entry(uint32_t Sector_num, uint16_t Entry, uint8_t xdata * arr
 
 FS_values_t * Export_Drive_values(void);
 
+FS_values_t * Export_Drive_values_ISR(void);
+
 #endif
