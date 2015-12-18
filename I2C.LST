@@ -1,4 +1,4 @@
-C51 COMPILER V9.53.0.0   I2C                                                               12/17/2015 20:55:29 PAGE 1   
+C51 COMPILER V9.53.0.0   I2C                                                               12/17/2015 21:01:32 PAGE 1   
 
 
 C51 COMPILER V9.53.0.0, COMPILATION OF MODULE I2C
@@ -62,7 +62,7 @@ line level    source
   53   3          {
   54   4             I2C_clock_delay(Continue);
   55   4             SCL=0;
-C51 COMPILER V9.53.0.0   I2C                                                               12/17/2015 20:55:29 PAGE 2   
+C51 COMPILER V9.53.0.0   I2C                                                               12/17/2015 21:01:32 PAGE 2   
 
   56   4             num_bits--;
   57   4                 send_bit=((send_val>>num_bits)&0x01);
@@ -126,7 +126,7 @@ line level    source
  115   2         //  send START condition
  116   2         SDA=0;
  117   2         //  send device address+R
-C51 COMPILER V9.53.0.0   I2C                                                               12/17/2015 20:55:29 PAGE 3   
+C51 COMPILER V9.53.0.0   I2C                                                               12/17/2015 21:01:32 PAGE 3   
 
  118   2         num_bits=8;
  119   2           do
@@ -190,7 +190,7 @@ line level    source
  177   2          SDA=0;
  178   2          I2C_clock_delay(Continue);
  179   2          SCL=1;
-C51 COMPILER V9.53.0.0   I2C                                                               12/17/2015 20:55:29 PAGE 4   
+C51 COMPILER V9.53.0.0   I2C                                                               12/17/2015 21:01:32 PAGE 4   
 
  180   2          while(SCL!=1);
  181   2          I2C_clock_delay(Stop);
@@ -254,7 +254,7 @@ line level    source
  239   2         }
  240   1      }
  241          
-C51 COMPILER V9.53.0.0   I2C                                                               12/17/2015 20:55:29 PAGE 5   
+C51 COMPILER V9.53.0.0   I2C                                                               12/17/2015 21:01:32 PAGE 5   
 
  242          
 

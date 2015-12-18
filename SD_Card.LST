@@ -1,4 +1,4 @@
-C51 COMPILER V9.53.0.0   SD_CARD                                                           12/17/2015 20:55:29 PAGE 1   
+C51 COMPILER V9.53.0.0   SD_CARD                                                           12/17/2015 21:01:32 PAGE 1   
 
 
 C51 COMPILER V9.53.0.0, COMPILATION OF MODULE SD_CARD
@@ -62,7 +62,7 @@ line level    source
   53   3           SPI_send=argum>>8;   // BYTE1
   54   3           error_flag=SPI_Transfer(SPI_send,&SPI_return);
   55   3         }
-C51 COMPILER V9.53.0.0   SD_CARD                                                           12/17/2015 20:55:29 PAGE 2   
+C51 COMPILER V9.53.0.0   SD_CARD                                                           12/17/2015 21:01:32 PAGE 2   
 
   56   2         else
   57   2         {
@@ -126,7 +126,7 @@ line level    source
  115   3           error_flag=SPI_Transfer(SPI_send,&SPI_return);
  116   3         }
  117   2         else
-C51 COMPILER V9.53.0.0   SD_CARD                                                           12/17/2015 20:55:29 PAGE 3   
+C51 COMPILER V9.53.0.0   SD_CARD                                                           12/17/2015 21:01:32 PAGE 3   
 
  118   2         {
  119   3           return_val=SPI_error;
@@ -190,7 +190,7 @@ line level    source
  177   1         do
  178   1         {
  179   2            error_flag=SPI_Transfer(0xFF,&SPI_return);
-C51 COMPILER V9.53.0.0   SD_CARD                                                           12/17/2015 20:55:29 PAGE 4   
+C51 COMPILER V9.53.0.0   SD_CARD                                                           12/17/2015 21:01:32 PAGE 4   
 
  180   2            index++;
  181   2         }while(((SPI_return&0x80)==0x80)&&(index!=0)&&(error_flag==no_errors));
@@ -254,7 +254,7 @@ line level    source
  239   2            return_val=timeout_error;
  240   2         }
  241   1         else
-C51 COMPILER V9.53.0.0   SD_CARD                                                           12/17/2015 20:55:29 PAGE 5   
+C51 COMPILER V9.53.0.0   SD_CARD                                                           12/17/2015 21:01:32 PAGE 5   
 
  242   1         {
  243   2           if (SPI_return==0x00)
@@ -318,7 +318,7 @@ line level    source
  300   2            return_val=timeout_error;
  301   2         }
  302   1         else
-C51 COMPILER V9.53.0.0   SD_CARD                                                           12/17/2015 20:55:29 PAGE 6   
+C51 COMPILER V9.53.0.0   SD_CARD                                                           12/17/2015 21:01:32 PAGE 6   
 
  303   1         {
  304   2           if (SPI_return==0x00)
@@ -382,7 +382,7 @@ line level    source
  361   2             error_flag=SPI_Transfer(0xFF,&SPI_return);
  362   2         }
  363   1         GREENLED=0;
-C51 COMPILER V9.53.0.0   SD_CARD                                                           12/17/2015 20:55:29 PAGE 7   
+C51 COMPILER V9.53.0.0   SD_CARD                                                           12/17/2015 21:01:32 PAGE 7   
 
  364   1         printf("CMD0 sent ... ");   
  365   1         nCS0=0;  // CS card CS low
@@ -446,7 +446,7 @@ line level    source
  423   3          {
  424   4             error_status=error_flag;
  425   4          }
-C51 COMPILER V9.53.0.0   SD_CARD                                                           12/17/2015 20:55:29 PAGE 8   
+C51 COMPILER V9.53.0.0   SD_CARD                                                           12/17/2015 21:01:32 PAGE 8   
 
  426   3         }
  427   2         else
@@ -510,7 +510,7 @@ line level    source
  485   3          if(error_flag==no_errors)  error_flag=response(1,valsout);
  486   3          P3_5=1;
  487   3            if((valsout[0]==0x01)||(valsout[0]==0x00))
-C51 COMPILER V9.53.0.0   SD_CARD                                                           12/17/2015 20:55:29 PAGE 9   
+C51 COMPILER V9.53.0.0   SD_CARD                                                           12/17/2015 21:01:32 PAGE 9   
 
  488   3             error_flag=SEND_COMMAND(ACMD41,argument);
  489   3            if(error_flag==no_errors) response(1,valsout);
@@ -574,7 +574,7 @@ line level    source
  547   5                  if(error_flag==no_errors)
  548   5                    {
  549   6                        error_flag=response(1,valsout);
-C51 COMPILER V9.53.0.0   SD_CARD                                                           12/17/2015 20:55:29 PAGE 10  
+C51 COMPILER V9.53.0.0   SD_CARD                                                           12/17/2015 21:01:32 PAGE 10  
 
  550   6                    nCS0=1;
  551   6                        GREENLED=1;
@@ -638,7 +638,7 @@ line level    source
 MODULE INFORMATION:   STATIC OVERLAYABLE
    CODE SIZE        =   2122    ----
    CONSTANT SIZE    =    496    ----
-C51 COMPILER V9.53.0.0   SD_CARD                                                           12/17/2015 20:55:29 PAGE 11  
+C51 COMPILER V9.53.0.0   SD_CARD                                                           12/17/2015 21:01:32 PAGE 11  
 
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

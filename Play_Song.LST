@@ -1,4 +1,4 @@
-C51 COMPILER V9.53.0.0   PLAY_SONG                                                         12/17/2015 20:55:29 PAGE 1   
+C51 COMPILER V9.53.0.0   PLAY_SONG                                                         12/17/2015 21:01:32 PAGE 1   
 
 
 C51 COMPILER V9.53.0.0, COMPILATION OF MODULE PLAY_SONG
@@ -62,7 +62,7 @@ line level    source
   53   2          PCON |= 0x01;
   54   2        }
   55   1        
-C51 COMPILER V9.53.0.0   PLAY_SONG                                                         12/17/2015 20:55:29 PAGE 2   
+C51 COMPILER V9.53.0.0   PLAY_SONG                                                         12/17/2015 21:01:32 PAGE 2   
 
   56   1        TR2 = 0;
   57   1        
@@ -126,7 +126,7 @@ line level    source
  115   4              {
  116   5                if(index2_g >511)
  117   5                {
-C51 COMPILER V9.53.0.0   PLAY_SONG                                                         12/17/2015 20:55:29 PAGE 3   
+C51 COMPILER V9.53.0.0   PLAY_SONG                                                         12/17/2015 21:01:32 PAGE 3   
 
  118   6                  if(play_status == 3)                                  
  119   6                  {
@@ -190,7 +190,7 @@ line level    source
  177   3            //printf("FIND_CLUSTER_1\n\r");
  178   3            cluster_g = Find_Next_Clus_ISR(cluster_g, buf1);
  179   3            if(cluster_g == 0x0FFFFFFF) // Last cluster
-C51 COMPILER V9.53.0.0   PLAY_SONG                                                         12/17/2015 20:55:29 PAGE 4   
+C51 COMPILER V9.53.0.0   PLAY_SONG                                                         12/17/2015 21:01:32 PAGE 4   
 
  180   3            {
  181   4              //printf("DONE\n\r");
@@ -254,7 +254,7 @@ line level    source
  239   6                  state_g = DATA_SEND_1; // BUFF 2 empty                //Seems like this is when buffer 2 still has stuff
  240   6                }
  241   5                TF0 = 1;                                                // What does this do? is this the interupt for the whole system to ke
-C51 COMPILER V9.53.0.0   PLAY_SONG                                                         12/17/2015 20:55:29 PAGE 5   
+C51 COMPILER V9.53.0.0   PLAY_SONG                                                         12/17/2015 21:01:32 PAGE 5   
 
              -ep pace
  242   5              }
@@ -318,7 +318,7 @@ line level    source
  300   4            }
  301   3            break;
  302   3          }
-C51 COMPILER V9.53.0.0   PLAY_SONG                                                         12/17/2015 20:55:29 PAGE 6   
+C51 COMPILER V9.53.0.0   PLAY_SONG                                                         12/17/2015 21:01:32 PAGE 6   
 
  303   2          
  304   2          case DATA_IDLE_2:
@@ -382,7 +382,7 @@ line level    source
  362          //              buffer2=1;
  363          
  364          //          }
-C51 COMPILER V9.53.0.0   PLAY_SONG                                                         12/17/2015 20:55:29 PAGE 7   
+C51 COMPILER V9.53.0.0   PLAY_SONG                                                         12/17/2015 21:01:32 PAGE 7   
 
  365          //       }
  366          //       else
@@ -446,7 +446,7 @@ line level    source
  424          //              YELLOWLED=OFF;
  425          //           }
  426          //           else
-C51 COMPILER V9.53.0.0   PLAY_SONG                                                         12/17/2015 20:55:29 PAGE 8   
+C51 COMPILER V9.53.0.0   PLAY_SONG                                                         12/17/2015 21:01:32 PAGE 8   
 
  427          //           {
  428          //               if(index2>511)
@@ -510,7 +510,7 @@ line level    source
  486                   if(index1==512)
  487                   {
  488                      buff_emp|=1;           
-C51 COMPILER V9.53.0.0   PLAY_SONG                                                         12/17/2015 20:55:29 PAGE 9   
+C51 COMPILER V9.53.0.0   PLAY_SONG                                                         12/17/2015 21:01:32 PAGE 9   
 
  489                   }
  490               if(index1==1024)
@@ -574,7 +574,7 @@ line level    source
  548                       AMBERLED=ON;
  549                       nCS0=0;
  550                       SEND_COMMAND(17,sector+sector_offset);
-C51 COMPILER V9.53.0.0   PLAY_SONG                                                         12/17/2015 20:55:29 PAGE 10  
+C51 COMPILER V9.53.0.0   PLAY_SONG                                                         12/17/2015 21:01:32 PAGE 10  
 
  551                       read_block(512,buf2);
  552                       nCS0=1;             
