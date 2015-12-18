@@ -1,5 +1,8 @@
-#ifndef _SDCard_H
-#define _SDCard_H
+//***********************************      SD_Card.h      ***********************************//
+
+
+#ifndef _SD_Card_H
+#define _SD_Card_H
 
 #include "Main.H"
 

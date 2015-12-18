@@ -1,4 +1,7 @@
-#include "main.h"
+//***********************************      I2C.c      ***********************************//
+
+
+#include "Main.h"
 #include "PORT.H"
 #include "I2C.h"
 #include <stdio.h>

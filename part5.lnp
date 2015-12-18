@@ -6,10 +6,10 @@
 "Play_Song.obj",
 "print_bytes.obj",
 "Read_Sector.obj",
-"SDCard.obj",
 "SPI.obj",
 "STA013_config.obj",
 "UART.obj",
-"config.obj" 
+"config.obj",
+"SD_Card.obj" 
 TO "part5" 
 RAMSIZE(256) 

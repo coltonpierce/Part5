@@ -1,8 +1,11 @@
+//***********************************      SD_Card.c      ***********************************//
+
+
 #include "AT89C51RC2.h"
 #include "PORT.H"
-#include "main.h"
-#include "SDCard.h"
-#include "print_bytes.h"
+#include "Main.h"
+#include "SD_Card.h"
+#include "Print_Bytes.h"
 #include "SPI.h"
 #include <stdio.h>
 

@@ -1,11 +1,14 @@
+//***********************************      Play_Song.c      ***********************************//
+
+
 #include "stdio.h"
-#include "main.h"
+#include "Main.h"
 #include "PORT.H"
 #include "SPI.h"
 #include "File_System_v2.h"
 #include "Read_Sector.h"
 #include "Play_Song.h"
-#include "SDCard.h"
+#include "SD_Card.h"
 extern uint8_t xdata buf1[512];
 extern uint8_t xdata buf2[512]; 
 ///*

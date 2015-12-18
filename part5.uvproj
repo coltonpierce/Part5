@@ -403,11 +403,6 @@
               <FilePath>.\Read_Sector.c</FilePath>
             </File>
             <File>
-              <FileName>SDCard.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\SDCard.c</FilePath>
-            </File>
-            <File>
               <FileName>SPI.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\SPI.c</FilePath>
@@ -426,6 +421,11 @@
               <FileName>config.asm</FileName>
               <FileType>2</FileType>
               <FilePath>.\config.asm</FilePath>
+            </File>
+            <File>
+              <FileName>SD_Card.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\SD_Card.c</FilePath>
             </File>
           </Files>
         </Group>

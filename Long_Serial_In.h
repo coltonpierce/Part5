@@ -1,7 +1,10 @@
+//***********************************      Long_Serial_In.h      ***********************************//
+
+
 #ifndef _Long_Serial_In_H
 #define _Long_Serial_In_H
 
-#include "main.h"
+#include "Main.h"
 
 // ASCII characters
 #define space (0x20)

@@ -1,7 +1,10 @@
+//***********************************      UART.h      ***********************************//
+
+
 #ifndef _UART_H
 #define _UART_H
 
-#include "main.h"
+#include "Main.h"
 
 //------- Public Constant definitions --------------------------------
 // UART settings

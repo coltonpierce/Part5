@@ -1,10 +1,12 @@
+//***********************************      I2C_test.c      ***********************************//
+
 #include "stdio.h"
-#include "main.h"
+#include "Main.h"
 #include "PORT.H"
 #include "UART.h"
-#include "print_bytes.h"
+#include "Print_Bytes.h"
 #include "SPI.h"
-#include "SDcard.h"
+#include "SD_Card.h"
 #include "Long_Serial_In.h"
 #include "Directory_Functions_struct.h"
 #include "File_System.h"
@@ -21,7 +23,7 @@ uint8_t xdata buf2[512];
 //void Play_Song(uint32_t Start_Cluster);
 
 
-main()
+Main()
 {
    uint32_t idata Current_directory, Entry_clus;
    uint16_t idata i, num_entries, entry_num;
